@@ -33,6 +33,10 @@ const routes = [
     ],
   },
   {
+    path: "/event/:afterEvent(.*)",
+    redirect: (to) => ({ path: "/events/" + to.params.afterEvent }),
+  },
+  {
     path: "*",
     name: "notFound",
     component: NotFoundView,
