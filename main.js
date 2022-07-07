@@ -1,58 +1,22 @@
 const app = Vue.createApp({
   data() {
     return {
-      cart: 0,
+      cart: [],
       isPremium: true,
-      product: "Socks",
-      selected: 0,
-      description: "Good socks for good legs",
-      details: ["50% cotton", "30% wool", "20% polyester"],
-      variants: [
-        {
-          id: 2234,
-          color: "green",
-          image: "./assets/images/socks_green.jpg",
-          quantity: 11,
-        },
-        {
-          id: 2235,
-          color: "blue",
-          image: "./assets/images/socks_blue.jpg",
-          quantity: 0,
-        },
-      ],
     };
   },
   methods: {
-    addToCart() {
-      if (this.inventory === 0) {
-        return;
-      }
-
-      this.variants[this.selected].quantity -= 1;
-      this.cart += 1;
+    addHandler(id) {
+      this.cart.push(id);
     },
-    removeFromCart() {
-      if (!this.cart) {
-        return;
-      }
+    removeHandler(id) {
+      console.log(id);
+      const index = this.cart.findIndex((item) => item === id);
 
-      this.variants[this.selected].quantity += 1;
-      this.cart -= 1;
-    },
-    changeVariant(index) {
-      this.selected = index;
+      if (index > -1) {
+        this.cart.splice(index, 1);
+      }
     },
   },
-  computed: {
-    item() {
-      return this.variants[this.selected];
-    },
-    image() {
-      return this.item.image;
-    },
-    inventory() {
-      return this.item.quantity;
-    },
-  },
+  computed: {},
 });

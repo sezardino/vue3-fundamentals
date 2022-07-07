@@ -21,7 +21,7 @@ app.component("product-display", {
           <product-details :details="details"></product-details>
           <div v-for="(variant, index) in variants" :key="variant.id" class="color-circle" :style="{ backgroundColor: variant.color }" @mouseover="changeVariant(index)"></div>
           <button class="button" :class="{ disabledButton: inventory === 0 }" @click="addToCart">Add to Cart</button>
-          <button class="button" :class="{ disabledButton: cart === 0 }" @click="removeFromCart">Cancel</button>
+          <button class="button" @click="removeFromCart">Cancel</button>
         </div>
       </div>
     </div>
@@ -55,16 +55,16 @@ app.component("product-display", {
         return;
       }
 
+      this.$emit("add-to-cart", this.variants[this.selected].id);
       this.variants[this.selected].quantity -= 1;
-      this.cart += 1;
     },
     removeFromCart() {
-      if (!this.cart) {
+      if (this.variants[this.selected].quantity) {
         return;
       }
 
       this.variants[this.selected].quantity += 1;
-      this.cart -= 1;
+      this.$emit("remove-from-cart", this.variants[this.selected].id);
     },
     changeVariant(index) {
       this.selected = index;
