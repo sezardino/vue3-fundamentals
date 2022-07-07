@@ -10,8 +10,14 @@ const axiosInstance = axios.create({
 });
 
 export default {
-  getEvents() {
-    return axiosInstance.get("/events");
+  async getEvents(page, limit = 2) {
+    const response = await axiosInstance.get(
+      `/events?_limit=${limit}` + (page ? `&_page=${page}` : "")
+    );
+    return {
+      data: response.data,
+      totalPages: response.headers["x-total-count"] / limit,
+    };
   },
   getEvent(id) {
     return axiosInstance.get(`/events/${id}`);
