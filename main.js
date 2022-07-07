@@ -3,13 +3,22 @@ const app = Vue.createApp({
     return {
       cart: 0,
       product: "Socks",
+      selected: 0,
       description: "Good socks for good legs",
-      image: "./assets/images/socks_green.jpg",
-      inventory: 11,
       details: ["50% cotton", "30% wool", "20% polyester"],
       variants: [
-        { id: 2234, color: "green", image: "./assets/images/socks_green.jpg" },
-        { id: 2235, color: "blue", image: "./assets/images/socks_blue.jpg" },
+        {
+          id: 2234,
+          color: "green",
+          image: "./assets/images/socks_green.jpg",
+          quantity: 11,
+        },
+        {
+          id: 2235,
+          color: "blue",
+          image: "./assets/images/socks_blue.jpg",
+          quantity: 0,
+        },
       ],
     };
   },
@@ -19,7 +28,7 @@ const app = Vue.createApp({
         return;
       }
 
-      this.inventory -= 1;
+      this.variants[this.selected].quantity -= 1;
       this.cart += 1;
     },
     removeFromCart() {
@@ -27,11 +36,22 @@ const app = Vue.createApp({
         return;
       }
 
-      this.inventory += 1;
+      this.variants[this.selected].quantity += 1;
       this.cart -= 1;
     },
-    changeImage(imageVariant) {
-      this.image = imageVariant;
+    changeVariant(index) {
+      this.selected = index;
+    },
+  },
+  computed: {
+    item() {
+      return this.variants[this.selected];
+    },
+    image() {
+      return this.item.image;
+    },
+    inventory() {
+      return this.item.quantity;
     },
   },
 });

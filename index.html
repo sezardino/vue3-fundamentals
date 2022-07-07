@@ -30,7 +30,7 @@
           <ul>
             <li v-for="detail in details" :key="detail"> {{ detail }} </li>
           </ul>
-          <div v-for="variant in variants" :key="variant.id" class="color-circle" :style="{ backgroundColor: variant.color }" @mouseover="changeImage(variant.image)"></div>
+          <div v-for="(variant, index) in variants" :key="variant.id" class="color-circle" :style="{ backgroundColor: variant.color }" @mouseover="changeVariant(index)"></div>
           <button class="button" :class="{ disabledButton: inventory === 0 }" @click="addToCart">Add to Cart</button>
           <button class="button" :class="{ disabledButton: cart === 0 }" @click="removeFromCart">Cancel</button>
         </div>
