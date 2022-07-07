@@ -24,6 +24,8 @@ app.component("product-display", {
           <button class="button" @click="removeFromCart">Cancel</button>
         </div>
       </div>
+      <review-list v-if="reviews.length > 0" :reviews="reviews"></review-list>
+      <review-form @add-review="addReview"></review-form>
     </div>
   `,
   data() {
@@ -47,6 +49,7 @@ app.component("product-display", {
           quantity: 0,
         },
       ],
+      reviews: [],
     };
   },
   methods: {
@@ -68,6 +71,9 @@ app.component("product-display", {
     },
     changeVariant(index) {
       this.selected = index;
+    },
+    addReview(review) {
+      this.reviews.push(review);
     },
   },
   computed: {
