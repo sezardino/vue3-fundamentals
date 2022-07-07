@@ -9,7 +9,7 @@
 
 <script>
 import EventCard from "@/components/EventCard.vue";
-import EventsService from "@/services/events";
+import EventsService from "@/services/EventsService";
 
 export default {
   name: "EventsView",
