@@ -28,6 +28,7 @@ export default {
       this.event = event.data;
     } catch (error) {
       console.log(error);
+      this.$router.push("500");
     }
   },
 };

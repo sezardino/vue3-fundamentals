@@ -7,6 +7,7 @@ import NotFoundView from "../views/NotFoundView.vue";
 import DetailsView from "../views/events/DetailsView";
 import EditView from "../views/events/EditView";
 import RegisterView from "../views/events/RegisterView";
+import NetworkErrorView from "../views/NetworkErrorView";
 
 Vue.use(VueRouter);
 
@@ -35,6 +36,11 @@ const routes = [
   {
     path: "/event/:afterEvent(.*)",
     redirect: (to) => ({ path: "/events/" + to.params.afterEvent }),
+  },
+  {
+    path: "/500",
+    name: "networkError",
+    component: NetworkErrorView,
   },
   {
     path: "*",

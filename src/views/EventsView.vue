@@ -50,6 +50,7 @@ export default {
         this.totalPages = response.totalPages;
       } catch (error) {
         console.log(error);
+        this.$router.push("500");
       }
     });
   },
