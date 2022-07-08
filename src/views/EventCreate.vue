@@ -46,10 +46,6 @@
 </template>
 
 <script>
-import { v4 as uuidv4 } from "uuid";
-
-import EventService from "../services/EventService";
-
 export default {
   data() {
     return {
@@ -76,14 +72,7 @@ export default {
   },
   methods: {
     onSubmit() {
-      const event = {
-        ...this.event,
-        organizer: this.$store.state.organizer,
-        id: uuidv4(),
-      };
-      EventService.addEvent(event)
-        .then((response) => this.$store.commit("ADD_EVENT", response.data))
-        .catch((error) => console.log(error));
+      this.$store.dispatch("createEvent", this.event);
     },
   },
 };
