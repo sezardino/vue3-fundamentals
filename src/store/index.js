@@ -1,7 +1,7 @@
-import { createStore } from 'vuex'
+import { createStore as vuexCreateStore } from 'vuex'
 import EventService from '@/services/EventService'
 
-export default createStore({
+const store = {
   state: {
     user: 'Adam Jahr',
     events: [],
@@ -25,16 +25,16 @@ export default createStore({
           commit('ADD_EVENT', event)
           commit('SET_EVENT', event)
         })
-        .catch(error => {
+        .catch((error) => {
           throw error
         })
     },
     fetchEvents({ commit }) {
       return EventService.getEvents()
-        .then(response => {
+        .then((response) => {
           commit('SET_EVENTS', response.data)
         })
-        .catch(error => {
+        .catch((error) => {
           throw error
         })
     },
@@ -44,19 +44,40 @@ export default createStore({
         commit('SET_EVENT', event)
       } else {
         return EventService.getEvent(id)
-          .then(response => {
+          .then((response) => {
             commit('SET_EVENT', response.data)
           })
-          .catch(error => {
+          .catch((error) => {
             throw error
           })
       }
     }
   },
   getters: {
-    getEventById: state => id => {
-      return state.events.find(event => event.id === id)
+    getEventById: (state) => (id) => {
+      return state.events.find((event) => event.id === id)
     }
   },
   modules: {}
-})
+}
+
+const defaultOverrides = {
+  state: () => ({})
+}
+
+const makeState = (initialState, overrideState) => {
+  return {
+    ...(typeof initialState === 'function' ? initialState() : initialState),
+    ...overrideState
+  }
+}
+
+export const createStore = (storeOverrides = defaultOverrides) => {
+  return vuexCreateStore({
+    ...store,
+    ...storeOverrides,
+    ...{ state: makeState(store.state, storeOverrides.state) }
+  })
+}
+
+export default createStore()
