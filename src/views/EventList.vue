@@ -1,7 +1,14 @@
 <template>
   <h1>Events for Good</h1>
   <div class="events">
-    <EventCard v-for="event in events" :key="event.id" :event="event" />
+    <router-link
+      v-for="event in events"
+      :key="event.id"
+      :to="{ name: 'EventDetails', params: { id: event.id } }"
+      class="event-link"
+    >
+      <EventCard :event="event" />
+    </router-link>
   </div>
 </template>
 
@@ -12,7 +19,7 @@ export default {
     EventCard
   },
   created() {
-    this.$store.dispatch('fetchEvents').catch(error => {
+    this.$store.dispatch('fetchEvents').catch((error) => {
       this.$router.push({
         name: 'ErrorDisplay',
         params: { error: error }
