@@ -1,5 +1,5 @@
 <template>
-  <h1>Events for Good</h1>
+  <h1 data-testid="page-title">Events for Good</h1>
   <div class="events">
     <router-link
       v-for="event in events"
