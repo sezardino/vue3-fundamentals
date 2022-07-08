@@ -41,7 +41,6 @@
 
       <button type="submit">Submit</button>
     </form>
-    <div>{{ $store.state.events }}</div>
   </div>
 </template>
 
@@ -72,7 +71,14 @@ export default {
   },
   methods: {
     onSubmit() {
-      this.$store.dispatch("createEvent", this.event);
+      this.$store
+        .dispatch("createEvent", this.event)
+        .then((data) =>
+          this.$router.push({ name: "EventDetails", params: { id: data.id } })
+        )
+        .catch((error) =>
+          this.$router.push({ name: "ErrorView", params: { error: error } })
+        );
     },
   },
 };
