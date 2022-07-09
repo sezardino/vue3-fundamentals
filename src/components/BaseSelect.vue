@@ -1,7 +1,8 @@
 <template>
-  <label v-if="label">{{ label }}</label>
+  <label v-if="label" :for="id">{{ label }}</label>
   <select
     v-bind="$attrs"
+    :id="id"
     :value="modelValue"
     @change="$emit('update:modelValue', $event.target.value)"
   >
@@ -31,6 +32,11 @@ export default {
       type: [String, Number],
       default: "",
     },
+  },
+  setup() {
+    const id = uuid().getId();
+
+    return { id };
   },
 };
 </script>
