@@ -1,6 +1,6 @@
 <template>
   <input
-    v-bind="$ttrs"
+    v-bind="$attrs"
     type="radio"
     :checked="modelValue === value"
     :value="value"
