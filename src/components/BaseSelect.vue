@@ -31,7 +31,7 @@
 <script>
 import SetupFormComponent from "@/helpers/SetupFormComponent";
 import UniqueID from "@/helpers/uuid";
-import BaseErrorMessage from "@/components/BaseErrorMessage.vue.vue";
+import BaseErrorMessage from "@/components/BaseErrorMessage.vue";
 
 export default {
   components: { BaseErrorMessage },

@@ -18,7 +18,10 @@
 </template>
 
 <script>
+import BaseRadio from "./BaseRadio.vue";
+
 export default {
+  components: { BaseRadio },
   props: {
     vertical: {
       type: Boolean,
