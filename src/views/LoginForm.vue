@@ -9,7 +9,11 @@
 </template>
 
 <script>
+import BaseInput from "@/components/BaseInput.vue";
+import BaseButton from "@/components/BaseButton.vue";
+
 export default {
+  components: { BaseInput, BaseButton },
   setup() {
     function onSubmit() {
       alert("Submitted");

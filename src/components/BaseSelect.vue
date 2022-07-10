@@ -29,10 +29,12 @@
 </template>
 
 <script>
-import SetupFormComponent from "@/features/SetupFormComponent";
-import UniqueID from "@/features/UniqueID";
+import SetupFormComponent from "@/helpers/SetupFormComponent";
+import UniqueID from "@/helpers/uuid";
+import BaseErrorMessage from "@/components/BaseErrorMessage.vue.vue";
 
 export default {
+  components: { BaseErrorMessage },
   props: {
     options: {
       type: Array,

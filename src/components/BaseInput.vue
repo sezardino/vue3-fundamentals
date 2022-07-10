@@ -21,10 +21,12 @@
 </template>
 
 <script>
-import SetupFormComponent from "@/features/SetupFormComponent";
-import UniqueID from "@/features/UniqueID";
+import SetupFormComponent from "@/helpers/SetupFormComponent";
+import UniqueID from "@/helpers/uuid";
+import BaseErrorMessage from "@/components/BaseErrorMessage.vue";
 
 export default {
+  components: { BaseErrorMessage },
   props: {
     label: {
       type: String,
