@@ -14,8 +14,8 @@ defineProps({
     default: "Page not found",
   },
   status: {
-    type: Number,
-    default: 404,
+    type: String,
+    default: "404",
   },
 });
 </script>

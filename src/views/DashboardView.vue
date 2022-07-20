@@ -11,7 +11,24 @@
 <script setup>
 import { ref } from "vue";
 import EventCard from "@/components/EventCard.vue";
+import { useStore } from "vuex";
+import { useRouter } from "vue-router";
 
+const router = useRouter();
+const store = useStore();
 const isLoading = ref(true);
 const events = ref([]);
+
+store
+  .dispatch("getEvents")
+  .then(() => {
+    isLoading.value = false;
+    events.value = store.state.events;
+  })
+  .catch((e) =>
+    router.push({
+      name: "error",
+      params: { status: e.response.status, message: e.response.statusText },
+    })
+  );
 </script>

@@ -15,7 +15,7 @@ const routes = [
     component: Dashboard,
   },
   {
-    path: "/:pathName()",
+    path: "/:pathName()*",
     name: "error",
     props: true,
     component: ErrorView,
