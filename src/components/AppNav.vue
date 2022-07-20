@@ -1,11 +1,29 @@
 <template>
-  <div id="nav">
+  <nav id="nav">
     <router-link to="/"> Home </router-link>
     <router-link to="/dashboard"> Dashboard </router-link>
-  </div>
+
+    <div class="wrapper">
+      <template v-if="!store.state.user">
+        <router-link to="/register"> Register </router-link>
+        <router-link to="/login"> Login </router-link>
+      </template>
+      <router-link v-else to="/"> Logout </router-link>
+    </div>
+  </nav>
 </template>
 
+<script setup>
+import { useStore } from "vuex";
+
+const store = useStore();
+</script>
+
 <style scoped>
+.wrapper {
+  margin-left: auto;
+}
+
 #nav {
   display: flex;
   align-items: center;
@@ -20,7 +38,9 @@
   color: white;
 }
 
-a {
+a,
+button {
+  cursor: pointer;
   font-weight: bold;
   color: #2c3e50;
   margin: auto 0.8em auto 0.4em;
