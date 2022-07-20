@@ -5,18 +5,15 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: "EventCard",
-  props: {
-    event: {
-      type: Object,
-      default: () => {
-        return {};
-      },
-    },
+<script setup>
+import { defineProps } from "vue";
+
+defineProps({
+  event: {
+    type: Object,
+    default: () => ({}),
   },
-};
+});
 </script>
 
 <style scoped>

@@ -8,23 +8,10 @@
   </div>
 </template>
 
-<script>
-import axios from "axios";
+<script setup>
+import { ref } from "vue";
 import EventCard from "@/components/EventCard.vue";
 
-export default {
-  components: { EventCard },
-  data() {
-    return {
-      isLoading: true,
-      events: [],
-    };
-  },
-  created() {
-    axios.get("//localhost:3000/dashboard").then(({ data }) => {
-      this.events = data.events.events;
-      this.isLoading = false;
-    });
-  },
-};
+const isLoading = ref(true);
+const events = ref([]);
 </script>

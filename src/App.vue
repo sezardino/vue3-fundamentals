@@ -5,12 +5,8 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import AppNav from "@/components/AppNav.vue";
-
-export default {
-  components: { AppNav },
-};
 </script>
 
 <style>
